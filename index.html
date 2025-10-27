@@ -6,13 +6,6 @@
   <title>sumikaイントロドン 対戦モード</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    body {
-      font-family: sans-serif;
-      background-color: #f9f9f9;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-    }
     .choice-btn {
       border: 3px solid #fff;
       background-color: #222;
@@ -22,39 +15,8 @@
       margin: 10px;
       display: inline-block;
     }
-    .gallery-section {
-      margin: 50px auto;
-      padding: 0 20px;
-    }
-    .gallery-section h2 {
-      margin-bottom: 20px;
-    }
-    .gallery-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-    }
-    .gallery-grid img {
-      width: 200px;
-      height: auto;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    .video-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 20px;
-    }
-    .video-grid video {
-      width: 300px;
-      height: auto;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
   </style>
+
 </head>
 <body>
   <div id="background-container"></div>
@@ -85,10 +47,12 @@
   <div id="game-area" class="hidden center-area">
     <h2 id="round-info">ROUND 1</h2>
     <h3 id="status-text">早押しスタンバイ！</h3>
+
     <div id="buzzers" class="buzzers">
       <button id="buzz1P" class="buzz-btn p1">1P(s)</button>
       <button id="buzz2P" class="buzz-btn p2">2P(5)</button>
     </div>
+
     <div id="choicesDiv"></div>
     <div id="choices" class="choices hidden"></div>
     <div id="result-display"></div>
@@ -107,59 +71,38 @@
   </div>
 
   <audio id="quizAudio"></audio>
+  <!-- 最終結果BGM（ループ） -->
   <audio id="bgmResult" loop src="audio/bgm/result.mp3"></audio>
 
   <!-- キー操作ガイド -->
-  <div id="key-guide" class="hidden">
-    <h3>キー対応表</h3>
-    <div id="key-map"></div>
-  </div>
+<div id="key-guide" class="hidden">
+  <h3>キー対応表</h3>
+  <div id="key-map"></div>
+</div>
 
-  <!-- タイマー表示 -->
-  <div id="timer-display">5</div>
-  <div id="timer-bar" style="position: fixed; bottom: 5%; left: 5%; width: 90%; height: 20px; background: #333; border: 2px solid #999; z-index: 9999; overflow: hidden; display: none;">
-    <div id="timer-fill" style="height: 100%; width: 100%; background: linear-gradient(to right, #0f0, #ff0, #f00); transition: width 1s linear;"></div>
-  </div>
+<!-- タイマー表示用の要素 -->
+<div id="timer-display">5</div>
 
-  <!-- ギャラリーセクション -->
-  <div class="gallery-section">
-    <h2>📸 ギャラリー</h2>
-    <div class="gallery-grid">
-      <!-- photo1〜photo18.jpg -->
-      <img src="https://github.com/kiyoyuki/dkiyoyuki-create/releases/download/v1.0/photo1.jpg" alt="photo1">
-      <img src="https://github.com/kiyoyuki/dkiyoyuki-create/releases/download/v1.0/photo2.jpg" alt="photo2">
-      <img src="https://github.com/kiyoyuki/dkiyoyuki-create/releases/download/v1.0/photo3.jpg" alt="photo3">
-      <img src="https://github.com/kiyoyuki/dkiyoyuki-create/releases/download/v1.0/photo4.jpg" alt="photo4">
-      <img src="https://github.com/kiyoyuki/dkiyoyuki-create/releases/download/v1.0/photo5.jpg" alt="photo5">
-      <img src="https://github.com/kiyoyuki/dkiyoyuki-create/releases/download/v1.0/photo6.jpg" alt="photo6">
-      <img src="https://github.com/kiyoyuki/dkiyoyuki-create/releases/download/v1.0/photo7.jpg" alt="photo7">
-      <img src="https://github.com/kiyoyuki/dkiyoyuki-create/releases/download/v1.0/photo8.jpg" alt="photo8">
-      <img src="https://github.com/kiyoyuki/dkiyoyuki-create/releases/download/v1.0/photo9.jpg" alt="photo9">
-      <img src="https://github.com/kiyoyuki/dkiyoyuki-create/releases/download/v1.0/photo10.jpg" alt="photo10">
-      <img src="https://github.com/kiyoyuki/dkiyoyuki-create/releases/download/v1.0/photo11.jpg" alt="photo11">
-      <img src="https://github.com/kiyoyuki/dkiyoyuki-create/releases/download/v1.0/photo12.jpg" alt="photo12">
-      <img src="https://github.com/kiyoyuki/dkiyoyuki-create/releases/download/v1.0/photo13.jpg" alt="photo13">
-      <img src="https://github.com/kiyoyuki/dkiyoyuki-create/releases/download/v1.0/photo14.jpg" alt="photo14">
-      <img src="https://github.com/kiyoyuki/dkiyoyuki-create/releases/download/v1.0/photo15.jpg" alt="photo15">
-      <img src="https://github.com/kiyoyuki/dkiyoyuki-create/releases/download/v1.0/photo16.jpg" alt="photo16">
-      <img src="https://github.com/kiyoyuki/dkiyoyuki-create/releases/download/v1.0/photo17.jpg" alt="photo17">
-      <img src="https://github.com/kiyoyuki/dkiyoyuki-create/releases/download/v1.0/photo18.jpg" alt="photo18">
-    </div>
-  </div>
+<div id="timer-bar" style="
+  position: fixed;
+  bottom: 5%;
+  left: 5%;
+  width: 90%;
+  height: 20px;
+  background: #333;
+  border: 2px solid #999;
+  z-index: 9999;
+  overflow: hidden;
+  display: none;
+">
+  <div id="timer-fill" style="
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to right, #0f0, #ff0, #f00);
+    transition: width 1s linear;
+  "></div>
+</div>
 
-  <!-- 動画セクション -->
-  <div class="gallery-section">
-    <h2>🎥 動画</h2>
-    <div class="video-grid">
-      <video controls><source src="https://github.com/kiyoyuki/dkiyoyuki-create/releases/download/v1.0/videos1.mp4" type="video/mp4"></video>
-      <video controls><source src="https://github.com/kiyoyuki/dkiyoyuki-create/releases/download/v1.0/videos2.mp4" type="video/mp4"></video>
-      <video controls><source src="https://github.com/kiyoyuki/dkiyoyuki-create/releases/download/v1.0/videos3.mp4" type="video/mp4"></video>
-      <video controls><source src="https://github.com/kiyoyuki/dkiyoyuki-create/releases/download/v1.0/videos4.mp4" type="video/mp4"></video>
-      <video controls><source src="https://github.com/kiyoyuki/dkiyoyuki-create/releases/download/v1.0/videos5.mp4" type="video/mp4"></video>
-      <video controls><source src="https://github.com/kiyoyuki/dkiyoyuki-create/releases/download/v1.0/videos6.mp4" type="video/mp4"></video>
-      <video controls><source src="https://github.com/kiyoyuki/dkiyoyuki-create/releases/download/v1.0/videos7.mp4" type="video/mp4"></video>
-    </div>
-  </div>
 
   <script src="script.js"></script>
 </body>
