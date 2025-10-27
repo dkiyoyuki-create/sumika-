@@ -1,0 +1,294 @@
+body {
+  margin: 0;
+  font-family: "Noto Sans JP", sans-serif;
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
+  background: #000;
+  height: 100vh;
+}
+
+#background-container video,
+#background-container img {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.6;
+}
+
+.hidden { display: none; }
+
+.center-area {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.big-btn {
+  font-size: 2rem;
+  padding: 1rem 3rem;
+  margin: 20px;
+  border: none;
+  border-radius: 20px;
+  background: #ff9800;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 20px #ff9800;
+  transition: all 0.3s;
+}
+.big-btn:hover { background: #ffc107; transform: scale(1.1); }
+
+.game-title {
+  position: absolute;
+  top: 20px;
+  width: 100%;
+  font-size: 2.5rem;
+  text-shadow: 2px 2px 8px black;
+}
+
+#round-info {
+  font-size: 3rem;
+  opacity: 0;
+  transition: opacity 1s;
+  animation: fadeInOut 3s ease;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: scale(0.8); }
+  30% { opacity: 1; transform: scale(1.2); }
+  70% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; }
+}
+
+#status-text { font-size: 1.8rem; margin: 20px; }
+
+.buzzers {
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  margin-top: 40px;
+}
+
+.buzz-btn {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  font-size: 2rem;
+  color: white;
+  border: none;
+  box-shadow: 0 0 30px rgba(255,255,255,0.6);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.buzz-btn:hover { transform: scale(1.1); }
+
+.buzz-btn.p1 { background: #2196f3; box-shadow: 0 0 25px #2196f3; }
+.buzz-btn.p2 { background: #e91e63; box-shadow: 0 0 25px #e91e63; }
+
+#choices {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.choice-btn:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s;
+}
+
+
+.choice-btn {
+  font-size: 1.8rem;
+  width: 300px;
+  height: 100px;
+  border-radius: 20px;
+  border: none;
+  background: #009688;
+  color: white;
+  box-shadow: 0 0 15px #009688;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.choice-btn:hover { background: #26a69a; transform: scale(1.05); }
+
+#result-display {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-top: 40px;
+  text-shadow: 0 0 20px #fff;
+}
+
+#final-message {
+  font-size: 4rem;
+  animation: flash 0.8s infinite alternate;
+  text-shadow: 0 0 30px #ff0;
+}
+
+@keyframes flash {
+  from { color: #fff; text-shadow: 0 0 20px #f00; }
+  to { color: #ff0; text-shadow: 0 0 50px #ff0; }
+}
+
+canvas#fireworks {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+select {
+  font-size: 2rem;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  background: #333;
+  color: #fff;
+  border: 2px solid #fff;
+  box-shadow: 0 0 10px #fff;
+  margin: 10px;
+}
+select:hover {
+  background: #555;
+  transform: scale(1.05);
+  transition: 0.2s;
+}
+
+#setup-area select {
+  font-size: 2rem;
+  padding: 0.5rem 1rem;
+  margin: 10px;
+  border-radius: 10px;
+  background: #222;
+  color: #fff;
+  border: 2px solid #fff;
+  box-shadow: 0 0 10px #fff;
+  transition: 0.2s;
+}
+
+#setup-area select:hover {
+  background: #444;
+  transform: scale(1.05);
+}
+
+#setup-area label {
+  font-size: 1.8rem;
+  margin-right: 10px;
+}
+
+#audio-player,
+#quizAudio,
+#bgmResult {
+  display: none;
+}
+
+.correct {
+  font-size: 4rem;
+  color: #00ffcc;
+  text-shadow: 0 0 30px #00ffcc, 0 0 60px #00ffff;
+  animation: correctFlash 1s ease-out, pulse 0.6s infinite alternate;
+}
+
+@keyframes correctFlash {
+  0% { transform: scale(0.8); opacity: 0; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pulse {
+  from { text-shadow: 0 0 20px #00ffcc; }
+  to { text-shadow: 0 0 50px #00ffff; }
+}
+
+.choice-btn {
+  font-size: 1.6rem;
+  width: 320px;
+  height: 80px;
+  margin: 10px;
+  border-radius: 15px;
+  border: none;
+  background: #444;
+  color: #fff;
+  box-shadow: 0 0 10px #888;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.choice-btn:hover {
+  background: #666;
+  transform: scale(1.05);
+}
+
+.correct {
+  font-size: 2rem;
+  color: #00ffcc;
+  text-shadow: 0 0 20px #00ffcc;
+}
+
+.incorrect {
+  font-size: 2rem;
+  color: #ff3b3b;
+  text-shadow: 0 0 20px #ff3b3b;
+}
+
+.choice-btn {
+  font-size: 1.6rem;
+  width: 320px;
+  height: 80px;
+  margin: 10px;
+  border-radius: 15px;
+  border: none;
+  background: #444;
+  color: #fff;
+  box-shadow: 0 0 10px #888;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.choice-btn:hover {
+  background: #666;
+  transform: scale(1.05);
+}
+
+#timer-display {
+  position: fixed;
+  top: 10%;
+  right: 5%;
+  font-size: 8rem;
+  font-weight: bold;
+  color: #ff0;
+  text-shadow: 0 0 20px #f00, 0 0 40px #ff0;
+  z-index: 9999;
+  animation: pulseTimer 1s infinite;
+  transform: scale(1);
+  transition: transform 0.3s ease;
+  display: none;
+}
+
+@keyframes pulseTimer {
+  0%   { transform: scale(1); color: #ff0; }
+  50%  { transform: scale(1.3); color: #f00; }
+  100% { transform: scale(1); color: #ff0; }
+}
+
+.flash-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: white;
+  opacity: 0;
+  z-index: 9998;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* UIをタッチ操作向けに調整 */
+button {
+  font-size: 1.2em;
+  padding: 12px 24px;
+  margin: 10px;
+}

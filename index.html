@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sumikaイントロドン 対戦モード</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .choice-btn {
+      border: 3px solid #fff;
+      background-color: #222;
+      color: #fff;
+      font-size: 1.5rem;
+      padding: 15px 25px;
+      margin: 10px;
+      display: inline-block;
+    }
+  </style>
+
+</head>
+<body>
+  <div id="background-container"></div>
+  <h1 class="game-title">🎶 sumikaイントロドン 対戦モード</h1>
+
+  <!-- スタート画面 -->
+  <div id="setup-area" class="center-area">
+    <h2>ラウンド数と曲数を選択！</h2>
+    <label>ラウンド数：</label>
+    <select id="roundCount">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+    <label>曲数：</label>
+    <select id="songCount">
+      <option value="1">1</option>
+      <option value="3">3</option>
+      <option value="5">5</option>
+      <option value="10">10</option>
+    </select>
+    <button id="startBtn" class="big-btn">スタート！</button>
+  </div>
+
+  <!-- ゲーム画面 -->
+  <div id="game-area" class="hidden center-area">
+    <h2 id="round-info">ROUND 1</h2>
+    <h3 id="status-text">早押しスタンバイ！</h3>
+
+    <div id="buzzers" class="buzzers">
+      <button id="buzz1P" class="buzz-btn p1">1P(s)</button>
+      <button id="buzz2P" class="buzz-btn p2">2P(5)</button>
+    </div>
+
+    <div id="choicesDiv"></div>
+    <div id="choices" class="choices hidden"></div>
+    <div id="result-display"></div>
+    <div id="animation-layer"></div>
+    <button id="nextBtn" class="big-btn hidden">次へ ▶</button>
+  </div>
+
+  <!-- 結果画面 -->
+  <div id="result-area" class="hidden center-area">
+    <h2 id="final-message"></h2>
+    <div id="scoreboard" class="hidden">
+      <div class="score p1-score">1P: <span id="score1P">0</span></div>
+      <div class="score p2-score">2P: <span id="score2P">0</span></div>
+    </div>
+    <button id="restartBtn" class="big-btn">もう一度！</button>
+  </div>
+
+  <audio id="quizAudio"></audio>
+  <!-- 最終結果BGM（ループ） -->
+  <audio id="bgmResult" loop src="audio/bgm/result.mp3"></audio>
+
+  <!-- キー操作ガイド -->
+<div id="key-guide" class="hidden">
+  <h3>キー対応表</h3>
+  <div id="key-map"></div>
+</div>
+
+<!-- タイマー表示用の要素 -->
+<div id="timer-display">5</div>
+
+<div id="timer-bar" style="
+  position: fixed;
+  bottom: 5%;
+  left: 5%;
+  width: 90%;
+  height: 20px;
+  background: #333;
+  border: 2px solid #999;
+  z-index: 9999;
+  overflow: hidden;
+  display: none;
+">
+  <div id="timer-fill" style="
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to right, #0f0, #ff0, #f00);
+    transition: width 1s linear;
+  "></div>
+</div>
+
+
+  <script src="script.js"></script>
+</body>
+</html>
